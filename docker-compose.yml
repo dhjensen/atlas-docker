@@ -1,0 +1,16 @@
+name: Atlas
+
+services:
+  atlas:
+    image: keinstien/atlas:${ATLAS_VERSION}
+    container_name: atlas
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/timezone:/etc/timezone:ro
+    network_mode: host
+    restart: unless-stopped
+    labels:
+      - wud.tag.include=^\d+\.\d+\.\d+$$
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
